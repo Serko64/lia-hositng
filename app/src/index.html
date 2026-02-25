@@ -294,6 +294,14 @@
       return c.semester === state.semester;
     }
 
+    function normalizeCoursePath(path){
+      const p = (path ?? "").toString().trim();
+      if (!p) return p;
+      if (p.startsWith("/courses/")) return `.${p}`;
+      if (p.startsWith("courses/")) return `./${p}`;
+      return p;
+    }
+
     function toViewerUrl(course){
       const p = (course.path ?? "").toString();
       if (!p) return VIEWER;
@@ -407,7 +415,7 @@
             version: c.version,
             tags: c.tags,
             file: c.file,
-            path
+            path: normalizeCoursePath(path)
           });
         }
       }
