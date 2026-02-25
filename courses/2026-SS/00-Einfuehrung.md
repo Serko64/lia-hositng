@@ -6,7 +6,7 @@ mode: Textbook
 
 comment: Vorlesung Programmieren 1 und 2 an der HFT Stuttgart des Bachelor Studiengangs Informatik im flexibilisierten Studienmodell
 
-import: ./coderunner.md
+import: https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
 
 link:   styles/style.css
         styles/liascript.css
