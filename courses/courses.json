@@ -4,15 +4,15 @@
     "courses": [
       {
         "title": "Einführung",
-        "path": "/courses/2026-SS/00-Einfuehrung.md#1"
+        "path": "./courses/2026-SS/00-Einfuehrung.md#1"
       },
       {
         "title": "Variablen und Datentypen",
-        "path": "/courses/2026-SS/01-Variablen-und-Datentypen.md#1"
+        "path": "./courses/2026-SS/01-Variablen-und-Datentypen.md#1"
       },
       {
         "title": "Arrays und Kontrollfluss",
-        "path": "/courses/2026-SS/02-Arrays-und-Kontrollfluss.md#1"
+        "path": "./courses/2026-SS/02-Arrays-und-Kontrollfluss.md#1"
       }
     ]
   }
