@@ -8,8 +8,8 @@ comment: Vorlesung Programmieren 1 und 2 an der HFT Stuttgart des Bachelor Studi
 
 import: https://raw.githubusercontent.com/LiaScript/CodeRunner/master/README.md
 
-link:   styles/style.css
-        styles/liascript.css
+link:   ../styles/style.css
+        ../styles/liascript.css
 
 -->
 
