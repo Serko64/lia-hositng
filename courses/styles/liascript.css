@@ -1,17 +1,315 @@
+/* ===================================
+   HFT Stuttgart – LiaScript Theme
+
+   Farbschema:
+   - Header/Navigation/Fortschritt: ROT (#e42832)
+   - Inhalte (Links, Buttons, Code): BLAU (#1e3c82)
+   - TOC-Text + Pagination:         SCHWARZ
+   - TOC-Marker:                    BLAU
+   =================================== */
+
+
+/* -----------------------------------
+   1. Custom Propertiesz
+   ----------------------------------- */
+
 :root {
-  --toolbar-red: #e42832;
-  --content-blue: #1e3c82;
+  --toolbar-red:       #e42832;
+  --toolbar-red-weak:  rgba(228, 40, 50, 0.12);
+
+  --content-blue:      #1e3c82;
+  --content-blue-dark: #142a5c;
+  --content-blue-weak: rgba(30, 60, 130, 0.12);
 }
 
+html, body, :root {
+  --color-highlight:      30, 60, 130 !important;
+  --color-highlight-dark: 20, 42, 92 !important;
+  --color-highlight-menu: 255, 255, 255 !important;
+}
+
+
+/* -----------------------------------
+   2. Header / Toolbar – neutraler Hintergrund
+   ----------------------------------- */
+
+.lia-header,
+.lia-toolbar {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+
+/* -----------------------------------
+   3. Header-Elemente (Icons, Links, DE) – ROT
+   ----------------------------------- */
+
+.lia-header button,
+.lia-header svg,
+.lia-header .icon,
+.lia-header a,
+.lia-header [class*='lang'],
 .lia-toolbar button,
 .lia-toolbar svg,
-.lia-header button,
-.lia-header svg {
-  color: var(--toolbar-red) !important;
-  fill: var(--toolbar-red) !important;
-  stroke: var(--toolbar-red) !important;
+.lia-toolbar .icon,
+.lia-toolbar a,
+.lia-toolbar [class*='lang'] {
+  color:      var(--toolbar-red) !important;
+  fill:       var(--toolbar-red) !important;
+  stroke:     var(--toolbar-red) !important;
+  background: transparent !important;
 }
 
-li::marker {
+.lia-header button:hover,
+.lia-header a:hover,
+.lia-toolbar button:hover,
+.lia-toolbar a:hover {
+  background: var(--toolbar-red-weak) !important;
+}
+
+
+/* -----------------------------------
+   4. TOC-Button (Hamburger) – ROT
+   ----------------------------------- */
+
+#lia-btn-toc,
+#lia-btn-toc * {
+  color:      var(--toolbar-red) !important;
+  fill:       var(--toolbar-red) !important;
+  stroke:     var(--toolbar-red) !important;
+  background: transparent !important;
+}
+
+#lia-btn-toc::before {
+  color: var(--toolbar-red) !important;
+}
+
+
+/* -----------------------------------
+   5. Aktiver Header-Indikator – ROT
+   ----------------------------------- */
+
+.lia-header .lia-active::before,
+.lia-header .lia-active::after,
+.lia-toolbar .lia-active::before,
+.lia-toolbar .lia-active::after,
+.lia-header [aria-current='page']::before,
+.lia-header [aria-current='page']::after,
+.lia-toolbar [aria-current='page']::before,
+.lia-toolbar [aria-current='page']::after {
+  background:   var(--toolbar-red) !important;
+  border-color: var(--toolbar-red) !important;
+}
+
+
+/* -----------------------------------
+   6. Fortschrittsbalken – ROT
+   ----------------------------------- */
+
+.lia-progress,
+.lia-progress-bar,
+.lia-pagination__bar,
+.lia-slide__progress {
+  background:   var(--toolbar-red) !important;
+  border-color: var(--toolbar-red) !important;
+}
+
+
+/* -----------------------------------
+   7. Logo (HFT Stuttgart)
+
+   WICHTIG: background-Shorthand verwenden,
+   damit die transparente Toolbar-Regel
+   nicht background-image überschreibt.
+
+   Empfehlung: Logo ins eigene Repo legen
+   und von dort referenzieren, falls
+   Wikimedia-Hotlinking blockiert wird.
+   ----------------------------------- */
+
+/* Standard-Logo/Text in der Toolbar verstecken */
+.lia-toolbar > a:first-child,
+.lia-toolbar .lia-btn:first-child {
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
+/* Eigenes Logo einblenden */
+.lia-slide .lia-toolbar {
+  background:
+          transparent
+          url("https://www.hft-stuttgart.de/assets/hft_sitepackage/img/logo-HFT-Stuttgart.svg")
+          no-repeat center left / contain !important;
+}
+
+
+/* -----------------------------------
+   8. Überschriften – SCHWARZ, rahmenlos
+   ----------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  color: #000 !important;
+}
+
+.lia-content h1 {
+  border:     none !important;
+  outline:    none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.lia-content h1::before,
+.lia-content h1::after {
+  border:     none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.lia-content .lia-section,
+.lia-content .lia-slide {
+  border:     none !important;
+  box-shadow: none !important;
+}
+
+
+/* -----------------------------------
+   9. Inhalts-Links – BLAU
+   ----------------------------------- */
+
+a:not(.lia-btn-primary):not(.lia-toc__content a):not(.lia-header a):not(.lia-toolbar a) {
   color: var(--content-blue) !important;
+}
+
+
+/* -----------------------------------
+   10. Listenpunkte – BLAU
+   ----------------------------------- */
+
+.lia-content li::marker {
+  color: var(--content-blue) !important;
+}
+
+
+/* -----------------------------------
+   11. Zitate – BLAU
+   ----------------------------------- */
+
+.lia-quote {
+  background:  rgba(30, 60, 130, 0.15) !important;
+  border-left: 4px solid var(--content-blue) !important;
+  color:       #111 !important;
+}
+
+.lia-quote .lia-quote__text {
+  color: var(--content-blue) !important;
+}
+
+
+/* -----------------------------------
+   12. Buttons – BLAU
+   ----------------------------------- */
+
+.lia-btn-primary {
+  background:   var(--content-blue) !important;
+  border-color: var(--content-blue) !important;
+  color:        #fff !important;
+}
+
+.lia-btn {
+  color:        var(--content-blue) !important;
+  border-color: var(--content-blue) !important;
+}
+
+.lia-btn:hover {
+  background: var(--content-blue-weak) !important;
+}
+
+
+/* -----------------------------------
+   13. Code-Container – BLAU
+   ----------------------------------- */
+
+.lia-code,
+.lia-code-toolbar {
+  border-color: var(--content-blue) !important;
+}
+
+.lia-code svg,
+.lia-code svg *,
+.lia-code-toolbar svg,
+.lia-code-toolbar svg * {
+  fill:   var(--content-blue) !important;
+  stroke: var(--content-blue) !important;
+}
+
+.lia-code button {
+  background:   transparent !important;
+  color:        var(--content-blue) !important;
+  border-color: transparent !important;
+}
+
+/* -----------------------------------
+   15. Linke Kapitelübersicht (TOC) – SCHWARZ
+   ----------------------------------- */
+
+.lia-toc,
+.lia-toc * {
+  color:  #000 !important;
+  fill:   #000 !important;
+  stroke: #000 !important;
+}
+
+.lia-toc__content a,
+.lia-toc__content a * {
+  color: #000 !important;
+}
+
+.lia-toc__content a.lia-active,
+.lia-toc__content a.lia-active * {
+  color: #000 !important;
+}
+
+.lia-toc__search input,
+.lia-toc__search input::placeholder,
+.lia-toc__search .icon-search,
+.lia-toc__clear-index {
+  color:  #000 !important;
+  fill:   #000 !important;
+  stroke: #000 !important;
+}
+
+
+/* -----------------------------------
+   16. TOC-Marker (aktives Kapitel) – BLAU
+   ----------------------------------- */
+
+.lia-toc__content a.lia-active::before,
+.lia-toc .lia-active::before,
+.lia-toc .active::before,
+.lia-toc a.active::before {
+  background:   var(--content-blue) !important;
+  border-color: var(--content-blue) !important;
+}
+
+.lia-toc__content a.lia-active,
+.lia-toc a.active,
+.lia-toc .active {
+  border-left-color: var(--content-blue) !important;
+  box-shadow: inset 4px 0 0 var(--content-blue) !important;
+}
+
+
+/* -----------------------------------
+   17. Pagination / Seitenanzahl – SCHWARZ
+   ----------------------------------- */
+
+.lia-pagination,
+.lia-pagination *,
+.lia-slide-control,
+.lia-slide-control * {
+  color:        #000 !important;
+  fill:         #000 !important;
+  stroke:       #000 !important;
+  border-color: transparent !important;
+  background:   transparent !important;
 }

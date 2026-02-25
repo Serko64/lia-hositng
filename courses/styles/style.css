@@ -1,4 +1,75 @@
-.ace_keyword  { color: #1e3c82 !important; font-weight: bold; }
-.ace_string   { color: #2a4d9a !important; }
-.ace_comment  { color: #5f78b5 !important; font-style: italic; }
-.ace_function { color: #1e3c82 !important; }
+:root {
+  --color-primary: #00305D;
+  --color-secondary: #E2001A;
+  --code-background: #f8f9fa;
+  --code-color: #333;
+  --code-cursor: #6c3bf5;
+}
+
+.ace_editor {
+  background-color: #fdfdfd !important;
+  border-radius: 4px;
+}
+
+.ace_keyword { color: #d73a49 !important; font-weight: bold; }
+.ace_string  { color: #032f62 !important; }
+.ace_comment { color: #6a737d !important; font-style: italic; }
+.ace_function{ color: #6f42c1 !important; }
+
+.tab-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tab-container input {
+  display: none;
+}
+
+.tab-header {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 1.5rem;
+  margin: 0.5em;
+}
+
+.tab-header label {
+  padding: 0.25rem 0.5em;
+  cursor: pointer;
+  font-weight: 500;
+  color: #888888;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab-header label:hover {
+  color: rgb(27, 117, 119);
+}
+
+#tab-java:checked ~ .tab-header label[for="tab-java"],
+#tab-python:checked ~ .tab-header label[for="tab-python"],
+#tab-javascript:checked ~ .tab-header label[for="tab-javascript"] {
+  color: rgb(27, 117, 119);
+}
+
+#tab-java:checked ~ .tab-header label[for="tab-java"]::after,
+#tab-python:checked ~ .tab-header label[for="tab-python"]::after,
+#tab-javascript:checked ~ .tab-header label[for="tab-javascript"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: rgb(27, 117, 119);
+}
+
+.tab-content {
+  display: none;
+  padding: 1em 0;
+}
+
+#tab-java:checked ~ #java,
+#tab-python:checked ~ #python,
+#tab-javascript:checked ~ #javascript {
+  display: block;
+}
