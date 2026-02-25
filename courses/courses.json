@@ -13,6 +13,22 @@
       {
         "title": "Arrays und Kontrollfluss",
         "path": "./courses/2026-SS/02-Arrays-und-Kontrollfluss.md#1"
+      },
+            {
+        "title": "Methoden und Strings",
+        "path": "./courses/2026-SS/03-Methoden-Strings.md#1"
+      },
+      {
+        "title": "IDE",
+        "path": "./courses/2026-SS/04-IDE.md#1"
+      },
+      {
+        "title": "Klassen und Objekte",
+        "path": "./courses/2026-SS/05-Klassen-Objekte.md#1"
+      },
+            {
+        "title": "Vererbung",
+        "path": "./courses/2026-SS/06-Vererbung.md#1"
       }
     ]
   }
