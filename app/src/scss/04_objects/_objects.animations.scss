@@ -1,0 +1,65 @@
+@use "sass:map";
+@use "../00_settings/settings.global";
+
+@keyframes rotating {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  animation: rotating 1s linear infinite;
+}
+
+@keyframes show-comment {
+  $left: map.get(settings.$global-spacing, spacing-huge) +
+    map.get(settings.$global-spacing, toc-width);
+  $right: map.get(settings.$global-spacing, spacing-huge);
+
+  from {
+    left: calc(100% + #{$left});
+    right: calc(#{$right} - 100%);
+  }
+  to {
+    left: $left;
+    right: $right;
+  }
+}
+
+.show-comment {
+  animation: show-comment;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 1;
+  animation: fade-in 2s;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#lia-tts-videos video {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fade-out 2s;
+}

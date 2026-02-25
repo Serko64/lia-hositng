@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HFT – LiaScript Kurse</title>
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --card: #ffffff;
+
+      --primary: #E42832;
+      --primary-weak: rgba(228,40,50,.12);
+
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index:10;
+      background: rgba(255,255,255,.72);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 120px;
+      height: auto;
+      display:block;
+    }
+    .titleblock{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+    }
+    .titleblock .h1{
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: .2px;
+    }
+    .titleblock .sub{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .spacer{ flex:1; }
+
+    .controls{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .search{
+      width: min(420px, 58vw);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 12px;
+      background: #fff;
+    }
+    .search input{
+      border:0;
+      outline:0;
+      width:100%;
+      font-size: 14px;
+      background: transparent;
+    }
+    .chipbar{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 18px 14px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .chip{
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor:pointer;
+      user-select:none;
+      transition: .15s ease;
+    }
+    .chip.active{
+      border-color: var(--primary);
+      background: var(--primary-weak);
+    }
+
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 18px 60px;
+    }
+
+    .hero{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:16px;
+      margin: 18px 0 18px;
+    }
+    .hero h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing: -0.2px;
+    }
+    .hero p{
+      margin:8px 0 0;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 150px;
+    }
+    .card .k-title{
+      font-weight: 750;
+      font-size: 16px;
+      letter-spacing: .1px;
+      margin:0;
+    }
+    .meta{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .tag{
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background:#fff;
+      color: var(--muted);
+    }
+
+    .actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-decoration:none;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background:#fff;
+      transition: .15s ease;
+    }
+    .btn.primary{
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    .footer{
+      margin-top: 26px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .error{
+      border: 1px solid #fecaca;
+      background: #fff1f2;
+      color: #7f1d1d;
+      padding: 12px 14px;
+      border-radius: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <img class="logo" src="./icon.ico" alt="HFT Stuttgart"/>
+        <div class="titleblock">
+          <div class="h1">LiaScript Kursportal</div>
+          <div class="sub">HFT Stuttgart · interne Kursübersicht</div>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="controls">
+        <div class="search" title="Suche nach Titel, Tags, Semester">
+          <span style="color:var(--muted)">⌕</span>
+          <input id="q" type="search" placeholder="Kurse suchen …" />
+        </div>
+      </div>
+    </div>
+
+    <div id="semesters" class="chipbar"></div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h2 id="headline">Kurse</h2>
+        <p id="subline">Wähle ein Semester oder suche nach Kursen. „Öffnen“ lädt den Kurs im LiaScript Viewer.</p>
+      </div>
+    </div>
+
+    <div id="root" class="grid"></div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> HFT Stuttgart · Flex-Programmieren</div>
+      <div style="display:none"></div>
+    </div>
+  </main>
+
+  <script>
+    const DATA_URL = "./courses/courses.json";
+    const VIEWER = "./viewer?";
+
+    const state = { all: [], semester: "LATEST", q: "" };
+
+    function normalize(s){ return (s ?? "").toString().toLowerCase().trim(); }
+
+    function courseMatches(c){
+      const q = normalize(state.q);
+      if (!q) return true;
+      const hay = [c.title, c.semester, ...(c.tags ?? []), c.version ?? ""].map(normalize).join(" ");
+      return hay.includes(q);
+    }
+
+    function semesterMatches(c){
+      if (state.semester === "ALL") return true;
+      return c.semester === state.semester;
+    }
+
+    function toViewerUrl(course){
+      const p = (course.path ?? "").toString();
+      if (!p) return VIEWER;
+      if (
+        p.startsWith("/viewer?") ||
+        p.startsWith("/viewer.html?") ||
+        p.startsWith("./viewer?") ||
+        p.startsWith("./viewer.html?") ||
+        p.startsWith("http://") ||
+        p.startsWith("https://")
+      ) {
+        return p;
+      }
+      return `${VIEWER}${encodeURI(p)}`;
+    }
+
+    function renderSemesters(semesters){
+      const wrap = document.getElementById("semesters");
+      wrap.innerHTML = "";
+
+      const makeChip = (label, value) => {
+        const el = document.createElement("div");
+        el.className = "chip" + (state.semester === value ? " active" : "");
+        el.textContent = label;
+        el.onclick = () => {
+          state.semester = value;
+          renderSemesters(semesters);
+          renderCourses();
+        };
+        return el;
+      };
+
+      wrap.appendChild(makeChip("Alle", "ALL"));
+      for (const s of semesters) wrap.appendChild(makeChip(s, s));
+    }
+
+    function courseToRawPath(c){
+      const p = (c.path ?? "").toString();
+      if (p.startsWith("/viewer?")) {
+        return decodeURI(p.slice("/viewer?".length).split("#")[0]);
+      }
+      if (p.startsWith("/viewer.html?")) {
+        return decodeURI(p.slice("/viewer.html?".length).split("#")[0]);
+      }
+      if (p.startsWith("./viewer?")) {
+        return decodeURI(p.slice("./viewer?".length).split("#")[0]);
+      }
+      if (p.startsWith("./viewer.html?")) {
+        return decodeURI(p.slice("./viewer.html?".length).split("#")[0]);
+      }
+      return p;
+    }
+
+    function renderCourses(){
+      const root = document.getElementById("root");
+      const filtered = state.all
+        .filter(semesterMatches)
+        .filter(courseMatches);
+
+      const semLabel = state.semester === "ALL" ? "Alle Semester" : state.semester;
+      document.getElementById("headline").textContent = `Kurse · ${semLabel}`;
+
+      root.innerHTML = "";
+      for (const c of filtered) {
+        const el = document.createElement("div");
+        el.className = "card";
+
+        const tags = (c.tags ?? []).slice(0, 6).map(t => `<span class="tag">${t}</span>`).join("");
+        const meta = `
+          <div class="meta">
+            <span class="tag">${c.semester}</span>
+            ${c.version ? `<span class="tag">${c.version}</span>` : ""}
+            ${tags}
+          </div>
+        `;
+
+        el.innerHTML = `
+          <div>
+            <p class="k-title">${c.title}</p>
+            ${meta}
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="${toViewerUrl(c)}">Öffnen</a>
+            <a class="btn" href="${encodeURI(courseToRawPath(c))}" target="_blank" rel="noopener">Markdown</a>
+          </div>
+        `;
+        root.appendChild(el);
+      }
+
+      if (filtered.length === 0){
+        root.innerHTML = `<div class="error">Keine Kurse gefunden. Suche anpassen oder anderes Semester wählen.</div>`;
+      }
+    }
+
+    async function load(){
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const res = await fetch(DATA_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error(`courses.json nicht gefunden (${res.status})`);
+
+      const grouped = await res.json();
+
+      const all = [];
+      for (const g of grouped) {
+        const semester = g.semester;
+        for (const c of (g.courses ?? [])) {
+          const path = c.path ?? c.url ?? c.href ?? (c.file ? `/courses/${semester}/${c.file}` : "");
+          all.push({
+            semester,
+            title: c.title,
+            version: c.version,
+            tags: c.tags,
+            file: c.file,
+            path
+          });
+        }
+      }
+
+      all.sort((a,b) => b.semester.localeCompare(a.semester) || a.title.localeCompare(b.title, "de"));
+      state.all = all;
+
+      const semesters = [...new Set(all.map(x => x.semester))];
+      state.semester = semesters[0] ?? "ALL";
+
+      renderSemesters(semesters);
+
+      const q = document.getElementById("q");
+      q.addEventListener("input", () => {
+        state.q = q.value;
+        renderCourses();
+      });
+
+      renderCourses();
+    }
+
+    load().catch(err => {
+      const root = document.getElementById("root");
+      root.innerHTML = `<div class="error">${err.message}</div>`;
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

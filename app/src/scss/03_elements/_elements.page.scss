@@ -1,0 +1,76 @@
+@use '../00_settings/settings.colors';
+@use '../00_settings/settings.global' as settings2;
+
+:root {
+  // Basic color definitions
+  // Map $global-colors and define global color variables with prefix "lia".
+  @each $color, $rgb in settings.$global-colors {
+    --lia-#{$color}: #{$rgb};
+  }
+}
+
+// Additional Color Definitions For Default Theme
+:root {
+  --color-background: var(--lia-white);
+  --color-border: var(--lia-grey-light);
+  --color-highlight-dark: var(--lia-turquoise-dark);
+  --color-highlight-menu: var(--lia-turquoise);
+  --color-highlight: var(--lia-turquoise);
+  --color-text: var(--lia-anthracite);
+
+  // dark theme
+  &.lia-variant-dark {
+    --color-background: var(--lia-grey-dark);
+    --color-border: var(--lia-anthracite);
+    --color-text: var(--lia-white);
+  }
+
+  &.lia-theme-turquoise {
+    --color-highlight-dark: var(--lia-turquoise-dark);
+    --color-highlight: var(--lia-turquoise);
+    --color-highlight-menu: var(--lia-white);
+  }
+
+  &.lia-theme-red {
+    --color-highlight-dark: var(--lia-red-dark);
+    --color-highlight: var(--lia-red);
+    --color-highlight-menu: var(--lia-white);
+  }
+
+  &.lia-theme-blue {
+    --color-highlight-dark: var(--lia-blue-dark);
+    --color-highlight: var(--lia-blue);
+    --color-highlight-menu: var(--lia-white);
+  }
+
+  &.lia-theme-yellow {
+    --color-highlight-dark: var(--lia-yellow-dark);
+    --color-highlight: var(--lia-yellow);
+    --color-highlight-menu: var(--lia-white);
+  }
+}
+
+:root {
+  // Global Font-Settings
+  --global-font-family: #{settings2.$global-font-family};
+  --global-font-mono: #{settings2.$global-font-mono};
+  --global-font-headline: #{settings2.$global-font-headline};
+  --global-font-size: 1.5rem;
+  --font-size-multiplier: 1;
+
+  // Max Editor Line Count
+  --max-editor-line-count: 16;
+
+  //font sizes scaling
+  &.lia-font-scale-2 {
+    --font-size-multiplier: 1.25;
+  }
+
+  &.lia-font-scale-3 {
+    --font-size-multiplier: 1.5;
+  }
+}
+
+html {
+  height: 100%;
+}

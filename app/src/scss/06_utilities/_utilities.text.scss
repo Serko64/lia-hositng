@@ -1,0 +1,45 @@
+/* Alignment */
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Font-Weight */
+
+.font-400 {
+  font-weight: 400;
+}
+
+/* Text-Color */
+.text-debug {
+  color: #ADD8E6; // rgb(var(--lia-blue));
+  // font-weight: bold;
+}
+.text-info {
+  color: rgb(var(--lia-white));
+  // font-weight: bold;
+}
+.text-warning {
+  color: #FF0; // rgb(var(--lia-yellow));
+  // font-weight: bold;
+}
+.text-error {
+  color: #F00; // rgb(var(--lia-red));
+  // font-weight: bold;
+}
+
+.text-disabled {
+  color: rgb(var(--lia-grey));
+}
+
+.text-success {
+  color: rgb(var(--lia-success));
+}

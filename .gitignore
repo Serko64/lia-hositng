@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Local preview/deploy output
+public/
+
+# App build artifacts
+app/dist/
+app/.parcel-cache/
+app/elm-stuff/
+
+# Dependencies
+app/node_modules/
+
+# Logs
+app/npm-debug.log*
+app/yarn-debug.log*
+app/yarn-error.log*
+app/pnpm-debug.log*

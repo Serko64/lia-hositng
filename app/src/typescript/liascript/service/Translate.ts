@@ -1,0 +1,186 @@
+import log from '../log'
+
+import * as RESOURCE from './Resource'
+
+// Checks if there has been a code injection jet
+var googleTranslate = false
+
+/**
+ * This is required to hide the DOM elements that are injected by the
+ * Google-translation API.
+ */
+function changeGoogleStyles() {
+  let goog = document.getElementById(':1.container')
+
+  if (goog) {
+    goog.style.visibility = 'hidden'
+    document.body.style.top = ''
+  }
+
+  // this has to be added in order to make the element not loosing the focus,
+  // caused by the elm-settings in translations, which will automatically
+  // close the menu, if the focus is lost
+  let select = document.getElementsByClassName('goog-te-combo')
+  if (select.length > 0) {
+    select[0].setAttribute('data-group-id', 'translation')
+  }
+
+  const removePopup = document.getElementById('goog-gt-tt')
+  if (removePopup && removePopup.parentNode) {
+    removePopup.parentNode.removeChild(removePopup)
+  }
+
+  const style = document.createElement('style')
+  style.innerHTML = `font {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }`
+  document.head.appendChild(style)
+}
+
+/**
+ * Bootstrap for the google-translation API, defines the main configurations.
+ *
+ * @see <https://www.w3schools.com/howto/howto_google_translate.asp>
+ */
+function googleTranslateElementInit() {
+  // @ts-ignore: will be injected by google
+  new google.translate.TranslateElement(
+    {
+      // use the course lang definition as default
+      pageLanguage: document.documentElement.lang,
+      // includedLanguages: 'ar,en,es,jv,ko,pa,pt,ru,zh-CN',
+      // layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      // multilanguagePage: true,
+      // gaTrack: true,
+      // gaId: 'todo'
+      autoDisplay: false,
+    },
+    // this defines the `id` of the HTML element that will be replaced by
+    // the google-drop-down field for selection languages
+    'google_translate_element',
+  )
+}
+
+/**
+ * Polyfill for Performance API to prevent errors in older browsers.
+ * Google Translate uses performance.measure() which may fail on older browsers.
+ */
+function polyfillPerformanceAPI() {
+  if (typeof performance !== 'undefined') {
+    const originalMeasure = performance.measure?.bind(performance)
+    if (originalMeasure) {
+      performance.measure = function (name, startMark, endMark) {
+        try {
+          return originalMeasure(name, startMark, endMark)
+        } catch (e) {
+          // Silently fail if marks don't exist
+          return undefined as any
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Inject the Google translation API into the head of the document.
+ */
+function injectGoogleTranslate() {
+  // inject the google translator
+  if (!googleTranslate) {
+    // Apply polyfill before loading Google Translate
+    polyfillPerformanceAPI()
+
+    // TODO:
+    // the general URL without protocol needs to be checked with other
+    // protocols IPFS, Hyper, etc.
+    RESOURCE.loadScript(
+      'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit',
+      false,
+      false,
+    )
+
+    // Setup the global init function, this function is called by google as a
+    // bootstrap and the name has to mach the `cp` parameter of the upper
+    // resource.
+    window.googleTranslateElementInit = googleTranslateElementInit
+
+    // from now on there won't be ne translations
+    googleTranslate = true
+  }
+}
+
+const Port = 'translate'
+
+/**
+ * Service handler for **translations**, currently only google is supported.
+ */
+const Service = {
+  /**
+   * Service identifier 'translate', that is used to while service routing.
+   */
+  PORT: Port,
+
+  /**
+   * This adds a special mutation observer for the `lang` attribute within the
+   * `<html>` tag. Whenever there is an external system that translates the
+   * website, then the change of the `lang` attribute is send back to LiaScript
+   * via the `elmSend` function.
+   * @param elmSend - callback function for reaching out LiaScript
+   */
+  init: function (elmSend: Lia.Send) {
+    var observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        changeGoogleStyles()
+
+        let langCode = document.documentElement.lang
+        let langName
+        if (
+          typeof Intl !== 'undefined' &&
+          typeof Intl.DisplayNames === 'function'
+        ) {
+          let displayNames = new Intl.DisplayNames(['en'], { type: 'language' })
+          langName = displayNames.of(langCode)
+        } else {
+          // Fallback: just use the language code if DisplayNames is not supported
+          langName = langCode
+        }
+
+        elmSend({
+          reply: true,
+          track: [],
+          service: Port,
+          message: {
+            cmd: 'lang',
+            param: [langCode, langName],
+          },
+        })
+      })
+    })
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      childList: false,
+      characterData: false,
+      // only observe changes of this specific attribute
+      attributeFilter: ['lang'],
+    })
+  },
+
+  /**
+   * Generic handler for event-routing.
+   * @param event
+   */
+  handle: function (event: Lia.Event) {
+    switch (event.message.cmd) {
+      case 'google':
+        injectGoogleTranslate()
+        break
+
+      default:
+        log.warn('(Service Translate) unknown message =>', event.message)
+    }
+  },
+}
+
+export default Service

@@ -1,0 +1,43 @@
+@use "../00_settings/settings.global";
+@use "../01_tools/tools.hidden-visually";
+@use "../01_tools/tools.px-em-calc" as tools2;
+
+/* ==========================================================================
+   #HIDE
+   ========================================================================== */
+
+/**
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.hidden-visually {
+  @include tools.hidden-visually();
+}
+
+/**
+ * Hide visually and from screen readers.
+ */
+
+.hide {
+  display: none !important;
+}
+
+/**
+ * Hide visually and from screen readers at different breakpoints.
+ */
+
+@each $bp-name, $bp in settings.$global-breakpoints {
+  @media (min-width: $bp) {
+    .hide-#{$bp-name}-up {
+      display: none !important;
+    }
+  }
+
+  $bp-adj: $bp - tools2.calc-em(1, 16);
+  @media (max-width: $bp-adj) {
+    .hide-#{$bp-name}-down {
+      display: none !important;
+    }
+  }
+}

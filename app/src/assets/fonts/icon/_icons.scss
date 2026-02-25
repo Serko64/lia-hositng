@@ -1,0 +1,637 @@
+@charset "UTF-8";
+
+.icon {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1
+}
+
+.icon-lg {
+  font-size: 1.33333em;
+  line-height: .75em;
+  vertical-align: -.0667em
+}
+
+.icon-xs {
+  font-size: .75em
+}
+
+.icon-sm {
+  font-size: .875em
+}
+
+.icon-1x {
+  font-size: 1em
+}
+
+.icon-2x {
+  font-size: 2em
+}
+
+.icon-3x {
+  font-size: 3em
+}
+
+.icon-4x {
+  font-size: 4em
+}
+
+.icon-5x {
+  font-size: 5em
+}
+
+.icon-6x {
+  font-size: 6em
+}
+
+.icon-7x {
+  font-size: 7em
+}
+
+.icon-8x {
+  font-size: 8em
+}
+
+.icon-9x {
+  font-size: 9em
+}
+
+.icon-10x {
+  font-size: 10em
+}
+
+.icon-fw {
+  text-align: center;
+  width: 1.25em
+}
+
+.icon-ul {
+  list-style-type: none;
+  margin-left: 2.5em;
+  padding-left: 0
+}
+
+.icon-ul>li {
+  position: relative
+}
+
+.icon-li {
+  left: -2em;
+  position: absolute;
+  text-align: center;
+  width: 2em;
+  line-height: inherit
+}
+
+.icon-border {
+  border: .08em solid #eee;
+  border-radius: .1em;
+  padding: .2em .25em .15em
+}
+
+.icon-pull-left {
+  float: left
+}
+
+.icon-pull-right {
+  float: right
+}
+
+.icon.icon-pull-left {
+  margin-right: .3em
+}
+
+.icon.icon-pull-right {
+  margin-left: .3em
+}
+
+.icon-spin {
+  -webkit-animation: icon-spin 2s linear infinite;
+  animation: icon-spin 2s linear infinite
+}
+
+.icon-pulse {
+  -webkit-animation: icon-spin 1s steps(8) infinite;
+  animation: icon-spin 1s steps(8) infinite
+}
+
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+
+  to {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn)
+  }
+}
+
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg)
+  }
+
+  to {
+    -webkit-transform: rotate(1turn);
+    transform: rotate(1turn)
+  }
+}
+
+.icon-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg)
+}
+
+.icon-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg)
+}
+
+.icon-rotate-270 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg)
+}
+
+.icon-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1)
+}
+
+.icon-flip-vertical {
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1)
+}
+
+.icon-flip-both, .icon-flip-horizontal.icon-flip-vertical, .icon-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)"
+}
+
+.icon-flip-both, .icon-flip-horizontal.icon-flip-vertical {
+  -webkit-transform: scale(-1);
+  transform: scale(-1)
+}
+
+:root .icon-flip-both, :root .icon-flip-horizontal, :root .icon-flip-vertical, :root .icon-rotate-90, :root .icon-rotate-180, :root .icon-rotate-270 {
+  -webkit-filter: none;
+  filter: none
+}
+
+.icon-stack {
+  display: inline-block;
+  height: 2em;
+  line-height: 2em;
+  position: relative;
+  vertical-align: middle;
+  width: 2.5em
+}
+
+.icon-stack-1x, .icon-stack-2x {
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%
+}
+
+.icon-stack-1x {
+  line-height: inherit
+}
+
+.icon-stack-2x {
+  font-size: 2em
+}
+
+.icon-inverse {
+  color: #fff
+}
+
+
+$icon-arrow-down: "\EA01";
+.icon-arrow-down:before {
+  content: $icon-arrow-down
+}
+
+$icon-arrow-left: "\EA02";
+.icon-arrow-left:before {
+  content: $icon-arrow-left
+}
+
+$icon-arrow-right: "\EA03";
+.icon-arrow-right:before {
+  content: $icon-arrow-right
+}
+
+$icon-arrow-up: "\EA04";
+.icon-arrow-up:before {
+  content: $icon-arrow-up
+}
+
+$icon-barchart: "\EA05";
+.icon-barchart:before {
+  content: $icon-barchart
+}
+
+$icon-book: "\EA06";
+.icon-book:before {
+  content: $icon-book
+}
+
+$icon-boxplot: "\EA07";
+.icon-boxplot:before {
+  content: $icon-boxplot
+}
+
+$icon-chat-close: "\EA08";
+.icon-chat-close:before {
+  content: $icon-chat-close
+}
+
+$icon-chat-new: "\EA09";
+.icon-chat-new:before {
+  content: $icon-chat-new
+}
+
+$icon-chat-open: "\EA0A";
+.icon-chat-open:before {
+  content: $icon-chat-open
+}
+
+$icon-check: "\EA0B";
+.icon-check:before {
+  content: $icon-check
+}
+
+$icon-chevron-double-left: "\EA0C";
+.icon-chevron-double-left:before {
+  content: $icon-chevron-double-left
+}
+
+$icon-chevron-double-right: "\EA0D";
+.icon-chevron-double-right:before {
+  content: $icon-chevron-double-right
+}
+
+$icon-chevron-down: "\EA0E";
+.icon-chevron-down:before {
+  content: $icon-chevron-down
+}
+
+$icon-chevron-left: "\EA0F";
+.icon-chevron-left:before {
+  content: $icon-chevron-left
+}
+
+$icon-chevron-right: "\EA10";
+.icon-chevron-right:before {
+  content: $icon-chevron-right
+}
+
+$icon-chevron-up: "\EA11";
+.icon-chevron-up:before {
+  content: $icon-chevron-up
+}
+
+$icon-class-off: "\EA12";
+.icon-class-off:before {
+  content: $icon-class-off
+}
+
+$icon-class-on: "\EA13";
+.icon-class-on:before {
+  content: $icon-class-on
+}
+
+$icon-clock: "\EA14";
+.icon-clock:before {
+  content: $icon-clock
+}
+
+$icon-close: "\EA15";
+.icon-close:before {
+  content: $icon-close
+}
+
+$icon-code: "\EA16";
+.icon-code:before {
+  content: $icon-code
+}
+
+$icon-compile-circle: "\EA17";
+.icon-compile-circle:before {
+  content: $icon-compile-circle
+}
+
+$icon-copy: "\EA18";
+.icon-copy:before {
+  content: $icon-copy
+}
+
+$icon-darkmode: "\EA19";
+.icon-darkmode:before {
+  content: $icon-darkmode
+}
+
+$icon-download: "\EA1A";
+.icon-download:before {
+  content: $icon-download
+}
+
+$icon-edit: "\EA1B";
+.icon-edit:before {
+  content: $icon-edit
+}
+
+$icon-edrys: "\EA1C";
+.icon-edrys:before {
+  content: $icon-edrys
+}
+
+$icon-end-left: "\EA1D";
+.icon-end-left:before {
+  content: $icon-end-left
+}
+
+$icon-end-right: "\EA1E";
+.icon-end-right:before {
+  content: $icon-end-right
+}
+
+$icon-funnel: "\EA1F";
+.icon-funnel:before {
+  content: $icon-funnel
+}
+
+$icon-graph: "\EA20";
+.icon-graph:before {
+  content: $icon-graph
+}
+
+$icon-grid: "\EA21";
+.icon-grid:before {
+  content: $icon-grid
+}
+
+$icon-gundb: "\EA22";
+.icon-gundb:before {
+  content: $icon-gundb
+}
+
+$icon-heatmap: "\EA23";
+.icon-heatmap:before {
+  content: $icon-heatmap
+}
+
+$icon-hint: "\EA24";
+.icon-hint:before {
+  content: $icon-hint
+}
+
+$icon-info: "\EA25";
+.icon-info:before {
+  content: $icon-info
+}
+
+$icon-ipfs: "\EA26";
+.icon-ipfs:before {
+  content: $icon-ipfs
+}
+
+$icon-lightmode: "\EA27";
+.icon-lightmode:before {
+  content: $icon-lightmode
+}
+
+$icon-lineplot: "\EA28";
+.icon-lineplot:before {
+  content: $icon-lineplot
+}
+
+$icon-list-1: "\EA29";
+.icon-list-1:before {
+  content: $icon-list-1
+}
+
+$icon-list-2: "\EA2A";
+.icon-list-2:before {
+  content: $icon-list-2
+}
+
+$icon-list-3: "\EA2B";
+.icon-list-3:before {
+  content: $icon-list-3
+}
+
+$icon-login: "\EA2C";
+.icon-login:before {
+  content: $icon-login
+}
+
+$icon-mail: "\EA2D";
+.icon-mail:before {
+  content: $icon-mail
+}
+
+$icon-map: "\EA2E";
+.icon-map:before {
+  content: $icon-map
+}
+
+$icon-minus: "\EA2F";
+.icon-minus:before {
+  content: $icon-minus
+}
+
+$icon-more: "\EA30";
+.icon-more:before {
+  content: $icon-more
+}
+
+$icon-mqtt: "\EA31";
+.icon-mqtt:before {
+  content: $icon-mqtt
+}
+
+$icon-nostr: "\EA32";
+.icon-nostr:before {
+  content: $icon-nostr
+}
+
+$icon-p2pt: "\EA33";
+.icon-p2pt:before {
+  content: $icon-p2pt
+}
+
+$icon-parallel: "\EA34";
+.icon-parallel:before {
+  content: $icon-parallel
+}
+
+$icon-pencil: "\EA35";
+.icon-pencil:before {
+  content: $icon-pencil
+}
+
+$icon-person: "\EA36";
+.icon-person:before {
+  content: $icon-person
+}
+
+$icon-piechart: "\EA37";
+.icon-piechart:before {
+  content: $icon-piechart
+}
+
+$icon-play-circle: "\EA38";
+.icon-play-circle:before {
+  content: $icon-play-circle
+}
+
+$icon-plus: "\EA39";
+.icon-plus:before {
+  content: $icon-plus
+}
+
+$icon-presentation: "\EA3A";
+.icon-presentation:before {
+  content: $icon-presentation
+}
+
+$icon-pubnub: "\EA3B";
+.icon-pubnub:before {
+  content: $icon-pubnub
+}
+
+$icon-radar: "\EA3C";
+.icon-radar:before {
+  content: $icon-radar
+}
+
+$icon-refresh: "\EA3D";
+.icon-refresh:before {
+  content: $icon-refresh
+}
+
+$icon-resolve: "\EA3E";
+.icon-resolve:before {
+  content: $icon-resolve
+}
+
+$icon-sankey: "\EA3F";
+.icon-sankey:before {
+  content: $icon-sankey
+}
+
+$icon-scatterplot: "\EA40";
+.icon-scatterplot:before {
+  content: $icon-scatterplot
+}
+
+$icon-search: "\EA41";
+.icon-search:before {
+  content: $icon-search
+}
+
+$icon-send: "\EA42";
+.icon-send:before {
+  content: $icon-send
+}
+
+$icon-settings: "\EA43";
+.icon-settings:before {
+  content: $icon-settings
+}
+
+$icon-slides: "\EA44";
+.icon-slides:before {
+  content: $icon-slides
+}
+
+$icon-social: "\EA45";
+.icon-social:before {
+  content: $icon-social
+}
+
+$icon-sort-asc: "\EA46";
+.icon-sort-asc:before {
+  content: $icon-sort-asc
+}
+
+$icon-sort-desc: "\EA47";
+.icon-sort-desc:before {
+  content: $icon-sort-desc
+}
+
+$icon-sound-off: "\EA48";
+.icon-sound-off:before {
+  content: $icon-sound-off
+}
+
+$icon-sound-on: "\EA49";
+.icon-sound-on:before {
+  content: $icon-sound-on
+}
+
+$icon-stop-circle: "\EA4A";
+.icon-stop-circle:before {
+  content: $icon-stop-circle
+}
+
+$icon-table: "\EA4B";
+.icon-table:before {
+  content: $icon-table
+}
+
+$icon-torrent: "\EA4C";
+.icon-torrent:before {
+  content: $icon-torrent
+}
+
+$icon-trash: "\EA4D";
+.icon-trash:before {
+  content: $icon-trash
+}
+
+$icon-warning: "\EA4E";
+.icon-warning:before {
+  content: $icon-warning
+}
+
+$icon-zoom-out: "\EA4F";
+.icon-zoom-out:before {
+  content: $icon-zoom-out
+}
+
+$icon-zoom: "\EA50";
+.icon-zoom:before {
+  content: $icon-zoom
+}
+
+
+@font-face {
+  font-family: "icon";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url(../../src/assets/fonts/icon/fonts/icon.eot);
+  src: url(../../src/assets/fonts/icon/fonts/icon.eot?#iefix) format("embedded-opentype"),
+  url(../../src/assets/fonts/icon/fonts/icon.woff2) format("woff2"),
+  url(../../src/assets/fonts/icon/fonts/icon.woff) format("woff"),
+  url(../../src/assets/fonts/icon/fonts/icon.ttf) format("truetype"),
+  url(../../src/assets/fonts/icon/fonts/icon.svg#icon) format("svg");
+  font-display: swap;
+}
+
+$font-icon: "icon";
+.icon {
+  font-family: $font-icon;
+  font-weight: 900
+}

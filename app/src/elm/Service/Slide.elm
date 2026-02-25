@@ -1,0 +1,67 @@
+module Service.Slide exposing
+    ( fullscreen
+    , initialize
+    , scrollDown
+    , scrollIntoView
+    , scrollUp
+    )
+
+import Json.Encode as JE
+import Service.Event as Event exposing (Event)
+
+
+{-| This event shall be called on every slide load and will move the slide back
+to the top and also check if the associated title is visible in the table of
+contents, if not, this will be moved into the viewPort either.
+-}
+initialize : Int -> String -> Event
+initialize slide title =
+    [ ( "slide", JE.int slide )
+    , ( "title", JE.string title )
+    ]
+        |> JE.object
+        |> event "init"
+
+
+{-| Scroll the HTML `main` element to the top.
+-}
+scrollUp : Event
+scrollUp =
+    event "scroll_up" JE.null
+
+
+{-| Pass the id of an element that should be scrolled into the visible area as
+well as a delay in milliseconds. This is useful, for highlighting effects and
+animations, that might take a while before they are calculated.
+-}
+scrollIntoView : String -> Int -> Event
+scrollIntoView elementID delay =
+    [ ( "id", JE.string elementID )
+    , ( "delay", JE.int delay )
+    ]
+        |> JE.object
+        |> event "scroll_into_view"
+
+
+scrollDown : String -> Int -> Event
+scrollDown elementID delay =
+    [ ( "id", JE.string elementID )
+    , ( "delay", JE.int delay )
+    ]
+        |> JE.object
+        |> event "scroll_down"
+
+
+fullscreen : Event
+fullscreen =
+    event "fullscreen" (JE.bool True)
+
+
+{-| **private:** Helper function to generate event - stubs that will be handled
+by the service module `Slide.ts`.
+-}
+event : String -> JE.Value -> Event
+event cmd message =
+    { cmd = cmd, param = message }
+        |> Event.init "slide"
+        |> Event.withNoReply

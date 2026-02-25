@@ -1,0 +1,25 @@
+a,
+.lia-link {
+  color: rgb(var(--color-highlight));
+  word-break: break-word;
+
+  &:link,
+  &:visited {
+    color: rgb(var(--color-highlight));
+  }
+
+  &:hover {
+    color: rgb(var(--color-highlight-dark));
+  }
+}
+
+.lia-link {
+  @at-root html.lia-variant-dark & {
+    border-color: rgb(
+      from rgb(var(--color-highlight)) calc(r * 2.2) calc(g * 2.2) calc(b * 2.2)
+    );
+    color: rgb(
+      from rgb(var(--color-highlight)) calc(r * 2.5) calc(g * 2.5) calc(b * 2.5)
+    );
+  }
+}

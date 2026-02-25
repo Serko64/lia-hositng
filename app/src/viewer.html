@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Lia</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script defer type="module" src="./typescript/webcomponents/embed/index.ts"></script>
+  <script defer type="module" src="./typescript/webcomponents/tooltip/index.ts"></script>
+  <script defer type="module" src="./entry/app/index.ts"></script>
+  <script defer type="module" src="./typescript/webcomponents/editor.ts"></script>
+  <script defer type="module" src="./typescript/webcomponents/formula/index.ts"></script>
+  <script defer type="module" src="./typescript/webcomponents/chart.ts"></script>
+  <script defer type="module" src="./typescript/webcomponents/format.ts"></script>
+  <script defer type="module" src="./typescript/webcomponents/terminal.ts"></script>
+
+  <link rel="shortcut icon" sizes="192x192" href="./assets/icon.ico" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="Lia" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LiaScript" />
+  <meta name="msapplication-TileImage" content="./assets/icon.ico" />
+  <meta name="msapplication-TileColor" content="#0071c5" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="theme-color" content="#000000" />
+
+  <meta name="description" content="LiaScript viewer" />
+
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="./assets/icon.ico" />
+  <link rel="icon" href="./assets/icon.ico" type="image/x-icon" />
+
+  <style>
+    .lds-dual-ring {
+      display: inline-block;
+      width: 150px;
+      height: 150px;
+    }
+    .lds-dual-ring:after {
+      content: ' ';
+      display: block;
+      width: 128px;
+      height: 128px;
+      margin: 1px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      border-color: #000 transparent #000 transparent;
+      animation: lds-dual-ring 1.2s linear infinite;
+    }
+    @keyframes lds-dual-ring {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <link rel="stylesheet" href="./scss/main.scss" media="none" onload="if(media!='all')media='all'" />
+  <link rel="stylesheet" href="../node_modules/katex/dist/katex.min.css" />
+  <link rel="stylesheet" href="./styles/liascript.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body>
+  <noscript>This page requires JavaScript to be enabled!</noscript>
+  <div style="width: 100%; text-align: center; top: 25%; position: absolute">
+    <h1>Loading</h1>
+    <br />
+    <div class="lds-dual-ring"></div>
+  </div>
+</body>
+
+</html>
