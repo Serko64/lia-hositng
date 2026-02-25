@@ -89,7 +89,6 @@ Da dieses Workbook das Hauptmaterial ist, gibt es hier zunächst eine kleine Ein
 
 Im folgenden Abschnitt sehen Sie dasselbe **Programm** in mehreren Programmiersprachen:
 
-<link rel="stylesheet" href="styles/style.css">
 
 <div class="tab-container">
   <input type="radio" id="tab-java" name="tabs" checked>
@@ -426,4 +425,3 @@ Führen Sie das Programm aus und verifzieren Sie die Ausgabe.
 >**Hinweis für Fortgeschrittene:**
 
  println(...) ist eine Methode, die den übergebenen Text oder Wert ausgibt und danach automatisch einen Zeilenumbruch (\n) einfügt. println steht für print line. Die Methode ist von Java vordefiniert und befindet sich in der Klasse System im Paket java.lang, das beim Start der Java Virtual Machine (JVM) immer initialisiert wird. 
-
