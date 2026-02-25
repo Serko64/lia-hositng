@@ -1,0 +1,17 @@
+:root {
+  --toolbar-red: #e42832;
+  --content-blue: #1e3c82;
+}
+
+.lia-toolbar button,
+.lia-toolbar svg,
+.lia-header button,
+.lia-header svg {
+  color: var(--toolbar-red) !important;
+  fill: var(--toolbar-red) !important;
+  stroke: var(--toolbar-red) !important;
+}
+
+li::marker {
+  color: var(--content-blue) !important;
+}
