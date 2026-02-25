@@ -294,16 +294,22 @@
       return c.semester === state.semester;
     }
 
-    function normalizeCoursePath(path){
+    const REPO_BASE = (() => {
+      const firstSegment = window.location.pathname.split("/").filter(Boolean)[0];
+      return firstSegment ? `/${firstSegment}` : "";
+    })();
+
+    function resolveCoursePath(path){
       const p = (path ?? "").toString().trim();
       if (!p) return p;
-      if (p.startsWith("/courses/")) return `.${p}`;
-      if (p.startsWith("courses/")) return `./${p}`;
+      if (p.startsWith("/courses/")) return `${REPO_BASE}${p}`;
+      if (p.startsWith("./courses/")) return `${REPO_BASE}/${p.slice(2)}`;
+      if (p.startsWith("courses/")) return `${REPO_BASE}/${p}`;
       return p;
     }
 
     function toViewerUrl(course){
-      const p = (course.path ?? "").toString();
+      const p = resolveCoursePath(course.path);
       if (!p) return VIEWER;
       if (
         p.startsWith("/viewer?") ||
@@ -339,7 +345,7 @@
     }
 
     function courseToRawPath(c){
-      const p = (c.path ?? "").toString();
+      const p = resolveCoursePath(c.path);
       if (p.startsWith("/viewer?")) {
         return decodeURI(p.slice("/viewer?".length).split("#")[0]);
       }
@@ -415,7 +421,7 @@
             version: c.version,
             tags: c.tags,
             file: c.file,
-            path: normalizeCoursePath(path)
+            path
           });
         }
       }
